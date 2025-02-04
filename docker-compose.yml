@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  login-service:
+    build: ./backend/login-service
+    ports:
+      - "5001:5001"
+  
+  signup-service:
+    build: ./backend/signup-service
+    ports:
+      - "5002:5002"
+
+  home-service:
+    build: ./backend/home-service
+    ports:
+      - "5003:5003"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - login-service
+      - signup-service
+      - home-service
